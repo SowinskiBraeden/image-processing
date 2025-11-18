@@ -141,16 +141,16 @@ int main(int argc, char *argv[])
             uint8_t b;
             uint8_t a;
 
-            r = (src >> 24) & 0xFF;
-            g = (src >> 16) & 0xFF;
-            b = (src >> 8)  & 0xFF;
-            a =  src        & 0xFF;
+            // r = (src >> 24) & 0xFF;
+            // g = (src >> 16) & 0xFF;
+            // b = (src >> 8)  & 0xFF;
+            // a =  src        & 0xFF;
 
-            uint8_t gray;
+            // uint8_t gray;
 
-            gray = (r + g + b) / 3;
+            // gray = (r + g + b) / 3;
 
-            pixels[i] = (gray << 24) | (gray << 16) | (gray << 8) | a;
+            // pixels[i] = (gray << 24) | (gray << 16) | (gray << 8) | a;
 
             // uint32_t src;
             // src = original_pixels[i];
@@ -160,41 +160,41 @@ int main(int argc, char *argv[])
             // uint8_t b;
             // uint8_t a;
 
-            // r = (src >> 24) & 0xFF;
-            // g = (src >> 16) & 0xFF;
-            // b = (src >> 8)  & 0xFF;
-            // a =  src        & 0xFF;
+            r = (src >> 24) & 0xFF;
+            g = (src >> 16) & 0xFF;
+            b = (src >> 8)  & 0xFF;
+            a =  src        & 0xFF;
 
-            // float mr; float mg; float mb;
+            float mr; float mg; float mb;
 
-            // if (seg == 0)          // red → green
-            // {
-            //     mr = 1.0f - t;
-            //     mg = t;
-            //     mb = 0.0f;
-            // }
-            // else if (seg == 1)     // green → blue
-            // {
-            //     mr = 0.0f;
-            //     mg = 1.0f - t;
-            //     mb = t;
-            // }
-            // else                   // blue → red
-            // {
-            //     mr = t;
-            //     mg = 0.0f;
-            //     mb = 1.0f - t;
-            // }
+            if (seg == 0)          // red → green
+            {
+                mr = 1.0f - t;
+                mg = t;
+                mb = 0.0f;
+            }
+            else if (seg == 1)     // green → blue
+            {
+                mr = 0.0f;
+                mg = 1.0f - t;
+                mb = t;
+            }
+            else                   // blue → red
+            {
+                mr = t;
+                mg = 0.0f;
+                mb = 1.0f - t;
+            }
 
-            // uint8_t nr;
-            // uint8_t ng;
-            // uint8_t nb;
+            uint8_t nr;
+            uint8_t ng;
+            uint8_t nb;
 
-            // nr = (uint8_t)(r * mr);
-            // ng = (uint8_t)(g * mg);
-            // nb = (uint8_t)(b * mb);
+            nr = (uint8_t)(r * mr);
+            ng = (uint8_t)(g * mg);
+            nb = (uint8_t)(b * mb);
 
-            // pixels[i] = (nr << 24) | (ng << 16) | (nb << 8) | a;
+            pixels[i] = (nr << 24) | (ng << 16) | (nb << 8) | a;
         }
 
         SDL_UpdateTexture(texture, NULL, pixels, w * sizeof(uint32_t));
